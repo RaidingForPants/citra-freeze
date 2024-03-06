@@ -12,33 +12,27 @@ include(DownloadExternals)
 include(ExternalProject)
 
 # Boost
-if (NOT USE_SYSTEM_BOOST)
-    message(STATUS "Including vendored Boost library")
-    set(BOOST_ROOT "${CMAKE_SOURCE_DIR}/externals/boost" CACHE STRING "")
-    set(Boost_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/externals/boost" CACHE STRING "")
-    set(Boost_NO_SYSTEM_PATHS ON CACHE BOOL "")
-    add_library(boost INTERFACE)
-    target_include_directories(boost SYSTEM INTERFACE ${Boost_INCLUDE_DIR})
+message(STATUS "Including vendored Boost library")
+set(BOOST_ROOT "${CMAKE_SOURCE_DIR}/externals/boost" CACHE STRING "")
+set(Boost_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/externals/boost" CACHE STRING "")
+set(Boost_NO_SYSTEM_PATHS ON CACHE BOOL "")
+add_library(boost INTERFACE)
+target_include_directories(boost SYSTEM INTERFACE ${Boost_INCLUDE_DIR})
 
-    # Boost::serialization
-    file(GLOB boost_serialization_SRC "${CMAKE_SOURCE_DIR}/externals/boost/libs/serialization/src/*.cpp")
-    add_library(boost_serialization STATIC ${boost_serialization_SRC})
-    target_link_libraries(boost_serialization PUBLIC boost)
+# Boost::serialization
+file(GLOB boost_serialization_SRC "${CMAKE_SOURCE_DIR}/externals/boost/libs/serialization/src/*.cpp")
+add_library(boost_serialization STATIC ${boost_serialization_SRC})
+target_link_libraries(boost_serialization PUBLIC boost)
 
-    # Boost::iostreams
-    add_library(
-        boost_iostreams
-        STATIC
-        ${CMAKE_SOURCE_DIR}/externals/boost/libs/iostreams/src/file_descriptor.cpp
-        ${CMAKE_SOURCE_DIR}/externals/boost/libs/iostreams/src/mapped_file.cpp
-    )
-    target_link_libraries(boost_iostreams PUBLIC boost)
+# Boost::iostreams
+add_library(
+    boost_iostreams
+    STATIC
+    ${CMAKE_SOURCE_DIR}/externals/boost/libs/iostreams/src/file_descriptor.cpp
+    ${CMAKE_SOURCE_DIR}/externals/boost/libs/iostreams/src/mapped_file.cpp
+)
+target_link_libraries(boost_iostreams PUBLIC boost)
 # Add additional boost libs here; remember to ALIAS them in the root CMakeLists!
-else()
-    unset(BOOST_ROOT CACHE)
-    unset(Boost_INCLUDE_DIR CACHE)
-    set(Boost_NO_SYSTEM_PATHS OFF CACHE BOOL "" FORCE)
-endif()
 
 # Catch2
 add_library(catch2 INTERFACE)
