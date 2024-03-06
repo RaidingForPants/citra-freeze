@@ -34,9 +34,11 @@ I am not planning on developing this further.
 
 Make sure you are cloning *this* repository when following the build instructions.
 
-[Windows] (https://web.archive.org/web/20240229114614/https://github.com/citra-emu/citra/wiki/Building-For-Windows)
-[Linux] (https://web.archive.org/web/20240228130023/https://github.com/citra-emu/citra/wiki/Building-For-Linux)
-[MacOS] (https://web.archive.org/web/20240228082456/https://github.com/citra-emu/citra/wiki/Building-for-macOS)
+[Windows](https://web.archive.org/web/20240229114614/https://github.com/citra-emu/citra/wiki/Building-For-Windows)
+
+[Linux](https://web.archive.org/web/20240228130023/https://github.com/citra-emu/citra/wiki/Building-For-Linux)
+
+[MacOS](https://web.archive.org/web/20240228082456/https://github.com/citra-emu/citra/wiki/Building-for-macOS)
 
 
 ## License
